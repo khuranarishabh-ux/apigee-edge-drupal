@@ -5,6 +5,11 @@
     "description": "Apigee for Drupal.",
     "repositories": [
         {
+            "name": "forked-apigee_edge",
+            "type": "vcs",
+            "url": "https://github.com/khuranarishabh-ux/apigee-edge-drupal"
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
@@ -32,11 +37,14 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "composer/installers": true,
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "composer/installers": true,
             "drupal/core-composer-scaffold": true,
-            "symfony/runtime": true
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "symfony/runtime": true,
+            "tbachert/spi": true
         }
     },
     "minimum-stability": "dev",
