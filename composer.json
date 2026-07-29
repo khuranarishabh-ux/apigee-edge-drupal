@@ -3,6 +3,12 @@
     "license": "GPL-2.0-or-later",
     "type": "drupal-module",
     "description": "Apigee for Drupal.",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "require": {
         "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "ext-json": "*",
@@ -24,7 +30,14 @@
         "phpstan/phpstan": "^1.12"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "symfony/runtime": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -34,5 +47,11 @@
                 "drush.services.yml": "^13"
             }
         }
+    },
+    "scripts": {
+        "lint": "vendor/bin/phpcs --standard=phpcs.xml.dist . -p -s -n --colors --ignore=vendor/",
+        "format": "vendor/bin/phpcbf --standard=phpcs.xml.dist . -s --colors --ignore=vendor/",
+        "phpstan": "vendor/bin/phpstan analyze src --level=1",
+        "test": "vendor/bin/phpunit -c ../devportal-kickstart-project-composer/web/core/phpunit.xml.dist tests/src/Unit"
     }
 }
